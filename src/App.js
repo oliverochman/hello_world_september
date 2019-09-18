@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import Message from './Message';
+import ButtonMessage from './ButtonMessage';
 
 class App extends Component {
   state = {
-    message: 'Hello Craft Academy'
+    message: 'Hello Craft Academy',
+    renderButtonMessage: false
   }
 
   inputHandler = (event) => {
@@ -12,7 +14,35 @@ class App extends Component {
     })
   }
 
+  renderButtonMessage = () => {
+    if (this.state.renderButtonMessage == true) {
+      this.setState({
+        renderButtonMessage: false
+      })
+    } else {
+      this.setState({
+        renderButtonMessage: true
+      })
+    }
+    
+  }
+
   render() {
+    let buttonMessage;
+    
+    if (this.state.renderButtonMessage == true) {
+      buttonMessage = (
+        <>
+          <ButtonMessage />
+          <button onClick={this.renderButtonMessage}>Click me to remove this message</button>
+        </>
+      )
+    } else {
+      buttonMessage = (
+        <button onClick={this.renderButtonMessage}>Click me for a button message</button>
+      )
+    }
+
     return (
       <div>
         <Message
@@ -21,6 +51,9 @@ class App extends Component {
         <input 
           onBlur={this.inputHandler}
         />
+
+        {buttonMessage}
+
       </div>
     );
   }
