@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Message from './Message';
-import ButtonMessage from './ButtonMessage';
+import LoginForm from './LoginForm';
 
 class App extends Component {
   state = {
     message: 'Hello Craft Academy',
-    renderButtonMessage: false
+    renderLoginForm: false
   }
 
   inputHandler = (event) => {
@@ -14,32 +14,34 @@ class App extends Component {
     })
   }
 
-  renderButtonMessage = () => {
-    if (this.state.renderButtonMessage == true) {
+  renderLoginForm = () => {
+    if (this.state.renderLoginForm == true) {
       this.setState({
-        renderButtonMessage: false
+        renderLoginForm: false
       })
     } else {
       this.setState({
-        renderButtonMessage: true
+        renderLoginForm: true
       })
     }
     
   }
 
   render() {
-    let buttonMessage;
-    
-    if (this.state.renderButtonMessage == true) {
-      buttonMessage = (
+    let loginForm;
+
+    if (this.state.renderLoginForm == true) {
+      loginForm = (
         <>
-          <ButtonMessage />
-          <button onClick={this.renderButtonMessage}>Click me to remove this message</button>
+          <LoginForm
+            message={this.state.message} 
+          />
+          <button onClick={this.renderLoginForm}>Close Login Form </button>
         </>
       )
     } else {
-      buttonMessage = (
-        <button onClick={this.renderButtonMessage}>Click me for a button message</button>
+      loginForm = (
+        <button onClick={this.renderLoginForm}>Login</button>
       )
     }
 
@@ -52,8 +54,7 @@ class App extends Component {
           onBlur={this.inputHandler}
         />
 
-        {buttonMessage}
-
+        {loginForm}
       </div>
     );
   }

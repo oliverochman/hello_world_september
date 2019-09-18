@@ -1,8 +1,10 @@
 import React from 'react';
 
 const Message = (props) => {
+  const message = props.message
+  debugger;
   return (
-    <p>{props.message}</p>
+    <p>{message}</p>
   );
 }
 
